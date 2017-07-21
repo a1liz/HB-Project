@@ -3,6 +3,8 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use common\models\HbUserstatus;
+use common\models\HbSession;
 
 /**
  * Login form
@@ -42,6 +44,21 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
+
+            $tmpId = $this->getUser()->getID();
+            $tmpIp = Yii::$app->request->userIP;
+            // 验证密码时自动添加或更新HbSession字段
+            $hbsession = HbSession::find()->where(['uid' => $tmpId, 'ip' => $tmpIp])->one();
+            if ($hbsession !== null) {
+                $hbsession->errorcount += 1;
+                $hbsession->update();
+            }
+            else {
+                $hbsession = new HbSession();
+                $hbsession->uid = $tmpId;
+                $hbsession->ip = $tmpIp;
+                $hbsession->save();
+            }
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
@@ -56,7 +73,22 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            $isSuccess = Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            // 更新HbUserStatus最后一次登陆ip
+            $tmpId = $this->getUser()->getID();
+            $tmpIp = Yii::$app->request->userIP;
+            $hbuserstatus = HbUserstatus::findOne($tmpId);
+            $hbuserstatus->lastip = $tmpIp;
+            $hbuserstatus->update();
+            // 成功登陆则更新当前帐号的错误登陆次数为0
+            $hbsession = HbSession::find()->where(['uid' => $tmpId, 'ip' => $tmpIp])->one();
+            if ($hbsession !== null) {
+                $hbsession->dateline = date('Y-m-d H:i:s');
+                $hbsession->errorcount = 0;
+                $hbsession->update();
+            }
+
+            return $isSuccess;
         } else {
             return false;
         }
