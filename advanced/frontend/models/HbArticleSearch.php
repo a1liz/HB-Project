@@ -1,14 +1,14 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\HbArticle;
+use frontend\models\HbArticle;
 
 /**
- * HbArticleSearch represents the model behind the search form about `common\models\HbArticle`.
+ * HbArticleSearch represents the model behind the search form about `frontend\models\HbArticle`.
  */
 class HbArticleSearch extends HbArticle
 {
@@ -18,8 +18,8 @@ class HbArticleSearch extends HbArticle
     public function rules()
     {
         return [
-            [['aid', 'author'], 'integer'],
-            [['content', 'pubdate'], 'safe'],
+            [['aid'], 'integer'],
+            [['title', 'context', 'pubdate'], 'safe'],
         ];
     }
 
@@ -60,12 +60,11 @@ class HbArticleSearch extends HbArticle
         // grid filtering conditions
         $query->andFilterWhere([
             'aid' => $this->aid,
-            'title'=>$this->title,
-            'author' => $this->author,
             'pubdate' => $this->pubdate,
         ]);
 
-        $query->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'context', $this->context]);
 
         return $dataProvider;
     }

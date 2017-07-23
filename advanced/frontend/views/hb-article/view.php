@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\HbArticle */
 
-$this->title = $model->aid;
+$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Hb Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,12 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'aid',
-            'title',
             'content:ntext',
             'author',
             'pubdate',
+            'title',
         ],
-        'template'=>'<tr><th style="width:120px;">{label}</th><td>{value}</td></tr>' 
     ]) ?>
 
 </div>

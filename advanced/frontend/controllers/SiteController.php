@@ -215,4 +215,6 @@ class SiteController extends Controller
     {
         return $this->render('say',['message' => $message]);
     }
+    
+
 }

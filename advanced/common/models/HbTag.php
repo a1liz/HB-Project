@@ -51,6 +51,6 @@ class HbTag extends \yii\db\ActiveRecord
      */
     public function getHbTagitemComment()
     {
-        return $this->hasOne(HbTagitemComment::className(), ['tagid' => 'tagid']);
+        return $this->hasOne(HbTagitem::className(), ['tagid' => 'tagid']);
     }
 }
