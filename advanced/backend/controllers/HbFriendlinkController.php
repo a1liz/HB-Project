@@ -23,7 +23,7 @@ class HbFriendlinkController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    
                 ],
             ],
         ];
@@ -38,7 +38,7 @@ class HbFriendlinkController extends Controller
         $searchModel = new HbFriendlinkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderpartial('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -51,7 +51,7 @@ class HbFriendlinkController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderpartial('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -68,7 +68,7 @@ class HbFriendlinkController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->linkid]);
         } else {
-            return $this->render('create', [
+            return $this->renderpartial('create', [
                 'model' => $model,
             ]);
         }
@@ -87,7 +87,7 @@ class HbFriendlinkController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->linkid]);
         } else {
-            return $this->render('update', [
+            return $this->renderpartial('update', [
                 'model' => $model,
             ]);
         }

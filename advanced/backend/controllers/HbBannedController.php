@@ -8,6 +8,7 @@ use common\models\HbBannedSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * HbBannedController implements the CRUD actions for HbBanned model.
@@ -23,7 +24,7 @@ class HbBannedController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+
                 ],
             ],
         ];
@@ -38,7 +39,7 @@ class HbBannedController extends Controller
         $searchModel = new HbBannedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderpartial('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -51,7 +52,7 @@ class HbBannedController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderpartial('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -68,7 +69,7 @@ class HbBannedController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->banid]);
         } else {
-            return $this->render('create', [
+            return $this->renderpartial('create', [
                 'model' => $model,
             ]);
         }
@@ -87,7 +88,7 @@ class HbBannedController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->banid]);
         } else {
-            return $this->render('update', [
+            return $this->renderpartial('update', [
                 'model' => $model,
             ]);
         }

@@ -85,4 +85,27 @@ class HbArticle extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id'=>'author']);
     }
+
+     public function getUrl()
+    {
+        return Yii::$app->urlManager->createUrl(
+            [
+                'hb-article/detail',
+                'id'=>$this->aid,
+                'title'=>$this->title,
+            ]);
+    }
+
+    public function getBeginning($length=200)
+    {
+        $tmpStr = strip_tags($this->content);
+        $tmplen = mb_strlen($tmpStr);
+        $tmpStr = mb_substr($tmpStr,0,$length,'utf-8');
+        return $tmpStr.($tmplen>$length?'...':''); 
+    }
+    
+     public function getAuthori()
+    {
+        return $this->hasOne(User::className(), ['id'=>'author']);
+    }
 }

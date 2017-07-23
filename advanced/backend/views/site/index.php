@@ -1,20 +1,25 @@
 <?php
     use yii\helpers\Html;
     use yii\grid\GridView;
-    $this->title = 'HB技术小组网站';
+    $this->title = 'HB的文章管理';
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!DOCTYPE html>
-<html lang="zh-CN" class="no-js no-svg">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title>HB-后台管理</title>
+  <meta name="keywords" content="Bootstrap 3 Admin Dashboard Template Theme" />
+  <meta name="description" content="AdminDesigns - Bootstrap 3 Admin Dashboard Theme">
+  <meta name="author" content="AdminDesigns">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
-<title>HB技术小组 &#8211; 小组展示及论坛界面</title>
-<meta name='robots' content='noindex,follow' /> 
 
+<?=Html::cssFile('@web/assets/skin/default_skin/css/theme.css')?>
+<?=Html::cssFile('@web/assets/admin-tools/admin-forms/css/admin-forms.css')?>
+<?=Html::cssFile('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700')?>
 <?=Html::cssFile('@web/css/dashicons.min.css?ver=4.7.5')?>
 <?=Html::cssFile('@web/css/admin-bar.min.css?ver=4.7.5')?>
 <?=Html::cssFile('https://fonts.googleapis.com/css?family=Libre+Franklin%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C800%2C800i&#038;subset=latin%2Clatin-ext')?>
@@ -26,150 +31,460 @@
 <?=Html::jsFile('@web/js/global.js?ver=1.0')?>
 <?=Html::jsFile('@web/js/jquery.scrollTo.js?ver=2.1.2')?>
 <?=Html::jsFile('@web/js/wp-embed.min.js?ver=4.7.5')?>
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
 
-
-
-
-<!--[if lt IE 9]>
-<link rel='stylesheet' id='twentyseventeen-ie8-css'  href='http://localhost:8080/wordpress/wp-content/themes/twentyseventeen/assets/css/ie8.css?ver=1.0' type='text/css' media='all' />
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <html dir="ltr" lang="en-US" class="no-js ie8">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-<!--[if lt IE 9]>
-<script type='text/javascript' src='http://localhost:8080/wordpress/wp-content/themes/twentyseventeen/assets/js/html5.js?ver=3.7.3'></script>
-<![endif]-->
-
-
-
-<meta name="generator" content="WordPress 4.7.5" />
-        <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
-        <style type="text/css" media="print">#wpadminbar { display:none; }</style>
-<style type="text/css" media="screen">
-    html { margin-top: 32px !important; }
-    * html body { margin-top: 32px !important; }
-    @media screen and ( max-width: 782px ) {
-        html { margin-top: 46px !important; }
-        * html body { margin-top: 46px !important; }
-    }
-</style>
 </head>
 
-<body class="home blog logged-in admin-bar no-customize-support hfeed has-header-image has-sidebar colors-light">
-<div id="page" class="site">
-    <a class="skip-link screen-reader-text" href="#content">跳至内容</a>
+<body class="admin-elements-page" data-spy="scroll" data-target="#nav-spy" data-offset="300">
 
-    <header id="masthead" class="site-header" role="banner">
+  <!-- Start: Main -->
+  <div id="main">
 
-        <div class="custom-header">
+    <!-- Start: Header -->
+    <header class="navbar navbar-fixed-top navbar-shadow">
+      <div class="navbar-branding">
+        <a class="navbar-brand" href="dashboard.html">
+          <b>H-B</b>管理界面
+        </a>
+        <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="hidden-xs">
+          <a class="request-fullscreen toggle-active" href="#">
+            <span class="ad ad-screen-full fs18"></span>
+          </a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left navbar-search alt" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search..." value="Search...">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
 
-    <div class="custom-header-media">
-        <div id="wp-custom-header" class="wp-custom-header"><?=Html::img('@web/images/header1.jpg')?></div>   </div>
 
-    <div class="site-branding">
-    <div class="wrap">
-        
-        <div class="site-branding-text">
-                            <h1 class="site-title"><a href="" rel="home">HB技术小组</a></h1>
-            
-                                <p class="site-description">小组风采及论坛展示</p>
-                        </div><!-- .site-branding-text -->
+        <li class="menu-divider hidden-xs">
+          <i class="fa fa-circle"></i>
+        </li>
+        <li class="dropdown menu-merge">
+          <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
+            <img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
+            <span class="hidden-xs pl15"> HB技术小组-I </span>
+            <span class="caret caret-tp hidden-xs"></span>
+          </a>
+          <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
+            <li class="dropdown-header clearfix">
+              <div class="pull-left ml10">
+                <select id="user-status">
+                  <optgroup label="Current Status:">
+                    <option value="1-1">Away</option>
+                    <option value="1-2">Offline</option>
+                    <option value="1-3" selected="selected">Online</option>
+                  </optgroup>
+                </select>
+              </div>
 
-                <a href="#content" class="menu-scroll-down"><svg class="icon icon-arrow-right" aria-hidden="true" role="img"> <use href="#icon-arrow-right" xlink:href="#icon-arrow-right"></use> </svg><span class="screen-reader-text">向下滚动到内容</span></a>
-    
-    </div><!-- .wrap -->
-
-
-</div><!-- .site-branding -->
-
-</div><!-- .custom-header -->
-
-        
-    </header><!-- #masthead -->
-
-    
-    <div class="site-content-contain">
-        <div id="content" class="site-content">
-
-<div class="wrap">
-        <header class="page-header">
-        <h1 class="page-title">文章</h1>
+              <div class="pull-right mr10">
+                <select id="user-role">
+                  <optgroup label="Logged in As:">
+                    <option value="1-1">Client</option>
+                    <option value="1-2">Editor</option>
+                    <option value="1-3" selected="selected">Admin</option>
+                  </optgroup>
+                </select>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="animated animated-short fadeInUp">
+                <span class="fa fa-envelope"></span> Messages
+                <span class="label label-warning">2</span>
+              </a>
+            </li>
+            <li class="list-group-item">
+                <?= Html::a('Friends', ['hb-friendlink/index'], ['class' => 'fa fa-user']) ?>
+          
+            </li>
+            <li class="dropdown-footer">
+                 <?= Html::a('Logout', ['logout'], ['class' => 'fa fa-power-off pr5']) ?>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </header>
-     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <!-- End: Header -->
 
-    <p>
-        <?= Html::a('Create Hb Article Model', ['create'], ['class' => 'btn btn-success']) ?>
+    <!-- Start: Sidebar -->
+    <aside id="sidebar_left" class="nano nano-light affix">
+
+      <!-- Start: Sidebar Left Content -->
+      <div class="sidebar-left-content nano-content">
+
+        <!-- Start: Sidebar Header -->
+        <header class="sidebar-header">
+
+          <!-- Sidebar Widget - Author -->
+          <div class="sidebar-widget author-widget">
+            <div class="media">
+              <a class="media-left" href="#">
+                <img src="assets/img/avatars/3.jpg" class="img-responsive">
+              </a>
+              <div class="media-body">
+                
+                <div class="media-author">HB技术小组-I</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Widget - Menu (slidedown) -->
+          <div class="sidebar-widget menu-widget">
+            <div class="row text-center mbn">
+              <div class="col-xs-4">
+                <a href="dashboard.html" class="text-primary" data-toggle="tooltip" data-placement="top" title="Dashboard">
+                  <span class="glyphicon glyphicon-home"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_messages.html" class="text-info" data-toggle="tooltip" data-placement="top" title="Messages">
+                  <span class="glyphicon glyphicon-inbox"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_profile.html" class="text-alert" data-toggle="tooltip" data-placement="top" title="Tasks">
+                  <span class="glyphicon glyphicon-bell"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_timeline.html" class="text-system" data-toggle="tooltip" data-placement="top" title="Activity">
+                  <span class="fa fa-desktop"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_profile.html" class="text-danger" data-toggle="tooltip" data-placement="top" title="Settings">
+                  <span class="fa fa-gears"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_gallery.html" class="text-warning" data-toggle="tooltip" data-placement="top" title="Cron Jobs">
+                  <span class="fa fa-flask"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Widget - Search (hidden) -->
+          <div class="sidebar-widget search-widget hidden">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </span>
+              <input type="text" id="sidebar-search" class="form-control" placeholder="Search...">
+            </div>
+          </div>
+
+        </header>
+        <!-- End: Sidebar Header -->
+
+        <!-- Start: Sidebar Menu -->
+        <ul class="nav sidebar-menu">
+          <li class="sidebar-label pt20">Menu</li>
+          <li>
+
+          
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <span class="sidebar-title">用户管理</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                  <?= Html::a('HB的朋友们', ['hb-friendlink/index'], ['class' => 'fa fa-child']) ?>
+              </li>
+              <li>
+                  <li>
+                 <?= Html::a('黑名单列表', ['hb-banned/index'], ['class' => 'fa fa-money']) ?>
+              </li>
+              </li>
+
+            </ul>
+          </li>
+
+          
+          <li>
+            <a class="accordion-toggle menu-open" href="#">
+              <span class="glyphicon glyphicon-fire"></span>
+              <span class="sidebar-title">HB四人组介绍</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                  <?= Html::a('段欣伯', ['site/duan'], ['class' => 'glyphicon glyphicon-equalizer']) ?>
+              </li>
+              <li>
+                 <?= Html::a('王理治', ['site/wang'], ['class' => 'glyphicon glyphicon-equalizer']) ?>
+              </li>
+              <li class="active">
+                 <?= Html::a('姚宗海', ['site/yao'], ['class' => 'glyphicon glyphicon-equalizer']) ?>
+              </li>
+               <li>
+                 <?= Html::a('张鹏程', ['site/zhang'], ['class' => 'glyphicon glyphicon-equalizer']) ?>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-check"></span>
+              <span class="sidebar-title"> 文章管理 </span>
+              <span class="sidebar-title-tray">
+                <span class="label label-xs bg-danger">Hot</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                 <?= Html::a('查看文章', ['index'], ['class' => 'glyphicon glyphicon-equalizer']) ?>
+              </li>
+              <li>
+                 <?= Html::a('增加文章', ['acreate'], ['class' => 'glyphicon glyphicon-calendar']) ?>
+              </li>
+            </ul>
+            </li>
+        
+
+
+
+
+
+          <li>                    </a>
+                  </li>
+                  
+
+                </ul>
+              </li>
+             
+             
+            </ul>
+          </li>
+          
+        </ul>
+        <!-- End: Sidebar Menu -->
+
+        <!-- Start: Sidebar Collapse Button -->
+       
+        <!-- End: Sidebar Collapse Button -->
+
+      </div>
+      <!-- End: Sidebar Left Content -->
+
+    </aside>
+
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
+
+
+      <!-- Start: Topbar -->
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+            
+            <li class="crumb-icon">
+    
+            </li>
+          </ol>
+        </div>
+
+      <!-- Begin: Content -->
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<div class="wrap">
+
+    
+<h1><?= Html::encode($this->title) ?></h1>
+
+<p>
+        <?= Html::a('Create New Hb Article', ['acreate'], ['class' => 'btn btn-success']) ?>
     </p>
-    
-    
-    <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
 
-        </main><!-- #main -->
-    </div><!-- #primary -->
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'aid',
+            'content:ntext',
+            'author',
+            'pubdate',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+    
+
+    <?php  echo $this->render('_asearch', ['model' => $searchModel]); ?>
+
+    
+
+
+    </div>
     
 <aside id="secondary" class="widget-area" role="complementary">
-    <section id="search-2" class="widget widget_search">
-
-
-</section>      
-    <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
-
-
-
-
-            
-
-        </main><!-- #main -->
-    </div><!-- #primary -->
+   
+    
     
 
-</div><!-- .wrap -->
+</div>
 
 
-        </div><!-- #content -->
 
-        <footer id="colophon" class="site-footer" role="contentinfo">
-            <div class="wrap">
-                
-<div class="site-info">
-    <a href="https://cn.wordpress.org/">自豪地采用WordPress</a>
-</div><!-- .site-info -->
-            </div><!-- .wrap -->
-        </footer><!-- #colophon -->
-    </div><!-- .site-content-contain -->
-</div><!-- #page -->
 
-<script type='text/javascript'>
-/* <![CDATA[ */
-var twentyseventeenScreenReaderText = {"quote":"<svg class=\"icon icon-quote-right\" aria-hidden=\"true\" role=\"img\"> <use href=\"#icon-quote-right\" xlink:href=\"#icon-quote-right\"><\/use> <\/svg>"};
-/* ]]> */
-</script>
 
-    <!--[if lte IE 8]>
-        <script type="text/javascript">
-            document.body.className = document.body.className.replace( /(^|\s)(no-)?customize-support(?=\s|$)/, '' ) + ' no-customize-support';
-        </script>
-    <![endif]-->
-    <!--[if gte IE 9]><!-->
-        <script type="text/javascript">
-            (function() {
-                var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
 
-                        request = true;
-        
-                b[c] = b[c].replace( rcs, ' ' );
-                // The customizer requires postMessage and CORS (if the site is cross domain)
-                b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
-            }());
-        </script>
-    <!--<![endif]-->
+ 
 
-                        
-        
 
-      </aside></div></div></div></div>
-        
-        
+
+  <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- jQuery -->
+  <?=Html::jsFile('@web/vendor/jquery/jquery-1.11.1.min.js')?>
+  <?=Html::jsFile('@web/vendor/jquery/jquery_ui/jquery-ui.min.js')?>
+
+
+  <!-- Theme Javascript -->
+  <?=Html::jsFile('@web/assets/js/utility/utility.js')?>
+  <?=Html::jsFile('@web/assets/js/demo/demo.js')?>
+  <?=Html::jsFile('@web/assets/js/main.js')?>
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+
+    "use strict";
+
+    // Init Theme Core
+    Core.init();
+
+    // Init Demo JS
+    Demo.init();
+
+
+    // Form Switcher
+    $('#form-switcher > button').on('click', function() {
+      var btnData = $(this).data('form-layout');
+      var btnActive = $('#form-elements-pane .admin-form.active');
+
+      // Remove any existing animations and then fade current form out
+      btnActive.removeClass('slideInUp').addClass('animated fadeOutRight animated-shorter');
+      // When above exit animation ends remove leftover classes and animate the new form in
+      btnActive.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        btnActive.removeClass('active fadeOutRight animated-shorter');
+        $('#' + btnData).addClass('active animated slideInUp animated-shorter')
+      });
+    });
+
+    // Cache several DOM elements
+    var pageHeader = $('.content-header').find('b');
+    var adminForm = $('.admin-form');
+    var options = adminForm.find('.option');
+    var switches = adminForm.find('.switch');
+    var buttons = adminForm.find('.button');
+    var Panel = adminForm.find('.panel');
+
+    // Form Skin Switcher
+    $('#skin-switcher a').on('click', function() {
+      var btnData = $(this).data('form-skin');
+
+      $('#skin-switcher a').removeClass('item-active');
+      $(this).addClass('item-active')
+
+      adminForm.each(function(i, e) {
+        var skins = 'theme-primary theme-info theme-success theme-warning theme-danger theme-alert theme-system theme-dark';
+        var panelSkins = 'panel-primary panel-info panel-success panel-warning panel-danger panel-alert panel-system panel-dark';
+        $(e).removeClass(skins).addClass('theme-' + btnData);
+        Panel.removeClass(panelSkins).addClass('panel-' + btnData);
+        pageHeader.removeClass().addClass('text-' + btnData);
+      });
+
+      $(options).each(function(i, e) {
+        if ($(e).hasClass('block')) {
+          $(e).removeClass().addClass('block mt15 option option-' + btnData);
+        } else {
+          $(e).removeClass().addClass('option option-' + btnData);
+        }
+      });
+      $(switches).each(function(i, ele) {
+        if ($(ele).hasClass('switch-round')) {
+          if ($(ele).hasClass('block')) {
+            $(ele).removeClass().addClass('block mt15 switch switch-round switch-' + btnData);
+          } else {
+            $(ele).removeClass().addClass('switch switch-round switch-' + btnData);
+          }
+        } else {
+          if ($(ele).hasClass('block')) {
+            $(ele).removeClass().addClass('block mt15 switch switch-' + btnData);
+          } else {
+            $(ele).removeClass().addClass('switch switch-' + btnData);
+          }
+        }
+
+      });
+      buttons.removeClass().addClass('button btn-' + btnData);
+    });
+
+    setTimeout(function() {
+      adminForm.addClass('theme-primary');
+      Panel.addClass('panel-primary');
+      pageHeader.addClass('text-primary');
+
+      $(options).each(function(i, e) {
+        if ($(e).hasClass('block')) {
+          $(e).removeClass().addClass('block mt15 option option-primary');
+        } else {
+          $(e).removeClass().addClass('option option-primary');
+        }
+      });
+      $(switches).each(function(i, ele) {
+
+        if ($(ele).hasClass('switch-round')) {
+          if ($(ele).hasClass('block')) {
+            $(ele).removeClass().addClass('block mt15 switch switch-round switch-primary');
+          } else {
+            $(ele).removeClass().addClass('switch switch-round switch-primary');
+          }
+        } else {
+          if ($(ele).hasClass('block')) {
+            $(ele).removeClass().addClass('block mt15 switch switch-primary');
+          } else {
+            $(ele).removeClass().addClass('switch switch-primary');
+          }
+        }
+      });
+      buttons.removeClass().addClass('button btn-primary');
+    }, 800);
+
+  });
+  </script>
+  <!-- END: PAGE SCRIPTS -->
 
 </body>
+
 </html>
